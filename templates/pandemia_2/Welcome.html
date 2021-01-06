@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    <b> ¡Bienvenido! </b>
+{% endblock %}
+
+{% block content %}
+<div align="justify">
+    <p> Estás a punto de participar en un experimento económico. Trata de ser cuidadoso con las decisiones
+        que tomes, pues de tus elecciones y las de los demás participantes dependerán tus ganancias. Recuerda que,
+        si bien estamos ante una <b>situación hipotética</b>, los pagos sí son reales. Por ello, lee bien las
+        instrucciones y no empieces el juego hasta estar 100% seguro de haberlas entendido. Las ganancias que obtengas
+        serán proporcionales a los puntos que acumules a lo largo del experimento mediante la tasa de conversión
+        1 punto = S/ 0.1. Tú puedes ganar hasta un total de S/ 50.00, dependiendo, principalmente, de tu desempeño.
+        Los pagos se realizarán vía transferencia al término del experimento.</p>
+    <p> Es importante que no te comuniques, de ninguna manera, con los otros participantes del experimento. Si
+        tienes preguntas o necesitas asistencia, por favor levanta la mano para que un experimentador te ayude.
+        Cualquier violación a esta regla ocasionará que seas retirado del experimento y pierdas el derecho a
+        recibir tu pago. <b> Toda la información sobre tu desempeño en este experimento es anónima y confidencial.</b>
+    </p>
+</div>
+A continuación, presentaremos las instrucciones del juego.
+
+<tr><td colspan="2"><hr/></td></tr>
+    {% next_button %}
+
+{% endblock %}

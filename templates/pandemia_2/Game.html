@@ -1,0 +1,87 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    <b> El juego </b>
+{% endblock %}
+
+{% block content %}
+
+    Un último reporte del Ministerio de Salud acaba de confirmar la existencia de una nueva enfermedad en el Perú.
+    Hasta el momento, se tiene muy poca información del virus que la ocasiona. Sin embargo, diversos estudios
+    coinciden en lo siguiente:
+
+	<ul>
+        <li>Todas las personas pueden ser contagiadas por esta nueva enfermedad con una probabilidad que ronda en
+             el intervalo de 0 y 1.</li>
+        <li>Cada persona tiene una probabilidad base de contagiarse que es asignada al azar y ronda
+            entre 0 y 50%. El otro 50% depende de las decisiones que la persona y sus compañeros tomen.</li>
+        <li>Existen algunas maneras de reducir la probabilidad de contagio. Para ello, las personas deben asumir una
+            serie de medidas de prevención que van en la escala de 0 a 5, donde 0 significa que no se asume ninguna
+            medida de prevención y 5, que se asumen todas las medidas de prevención.</li>
+        <li>Conforme usted asuma mayores medidas de prevención, su probabilidad de contagio será menor.</li>
+        <li>Si usted es contagiado, deberá asumir un costo por atención médica.</li>
+        <li>Dado que se convive en sociedad, mientras menor sea el nivel de prevención que elijan sus compañeros, la
+            probabilidad de que usted se contagie será mayor, por lo que ello le afecta de manera indirecta.</li>
+	</ul>
+
+    Usted sabe que lo mejor será quedarse en casa y no interactuar con las personas. Sin embargo, necesita salir e
+    interactuar con los demás. El detalle del juego es el siguiente:
+
+    <ul>
+        <li>En cada ronda, usted recibirá una dotación de 50 puntos y una probabilidad base de ser contagiado. Esta
+            probabilidad está entre 0 y 50% y es asignada al azar. Usted no puede observar cuál es su probabilidad de
+            contagio hasta el final de la ronda.</li>
+        <li>Usted tendrá que escoger qué nivel de prevención desea asumir en la escala de 0 a 5.</li>
+        <li>Cada nivel de protección adicional reduce la probabilidad de contagio en 10%. Sin embargo, la reducción
+            total depende, en un 40% del nivel de protección que usted elija y en un 60% del nivel de protección que
+            elijan sus compañeros.</li>
+        <li>Si usted elige un nivel de protección igual a X, entonces el costo de dicho nivel será de X<sup>2</sup>
+            puntos. Por ende, si no desea protegerse (escoge 0), su costo será cero y si desea estar muy protegido
+            (escoge 5), su costo será de 25 puntos.</li>
+        <li>Si usted es contagiado, perderá 70 puntos para cubrir costos de salud. Luego de enfermarse, las reglas
+            del juego no cambian. Por lo que existe la posibilidad de que vuelva a enfermarse.</li>
+        <li>El pago en cada ronda se determinará de la siguiente manera:
+
+            <h6 align="center">
+                 <math>
+	                    Pago = 50 - X<sup>2</sup> - 70    (Si es contagiado)
+                 </math>
+            </h6>
+
+            <h6 align="center">
+                 <math>
+                        Pago = 50 - X<sup>2</sup> - 0    (Si NO es contagiado)
+                 </math>
+            </h6>
+
+            Donde X es el nivel de prevención que se asume. Por ejemplo, si usted asume un nivel de prevención
+            de 3, su pago será:
+
+            <h6 align="center">
+                 <math>
+	             Pago = 50 - 3<sup>2</sup> - 70 = -29   (Si se contagia)
+                 </math>
+            </h6>
+
+            <h6 align="center">
+                 <math>
+	             Pago = 50 - 3<sup>2</sup> - 0 = 41   (Si NO se contagia)
+                 </math>
+            </h6>
+
+
+        </li>
+        <li>Al final del juego, su pago total será
+
+            <h6 align="center">
+                 <math>
+	             Pago total en el juego = Pago ronda 1 + Pago ronda 2 + ... + Pago ronda 9 + Pago ronda 10
+                 </math>
+            </h6>
+
+    </ul>
+    <tr><td colspan="2"><hr/></td></tr>
+    {% next_button %}
+
+{% endblock %}
