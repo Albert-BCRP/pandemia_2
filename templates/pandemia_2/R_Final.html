@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Fin del juego
+{% endblock %}
+
+{% block content %}
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td><b> El número de puntos que acumulaste a lo largo de las diez rondas fue: </b>{{ player.pago_acumulado }}</tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+        {% if player.pago_acumulado <= 0 %}
+        <tr><td><b>Eso significa que has ganado un total de:</b></td><td>0 soles</td></tr>
+        {% else %}
+        <tr><td><b>Eso significa que has ganado un total de:</b></td><td>{{ pago_real }}</td></tr>
+        {% endif %}
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td><b>Muchas gracias por haber participado</b></td></tr>
+    </table>
+    <p></p>
+
+    {% next_button %}
+
+{% endblock %}

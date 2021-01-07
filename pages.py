@@ -46,6 +46,12 @@ class Results(Page):
     def vars_for_template(self):
         return dict(costo_contagiado=self.player.prob_intrinseca)
 
+class R_Final(Page):
+    def is_displayed(self):
+        return self.round_number == 10
+    def vars_for_template(self):
+        return dict(pago_real = self.player.pago_acumulado.to_real_world_currency(self.session))
+
 class Treatment_1(Page):
     """Just for treated group 1"""
     def is_displayed(self):
@@ -60,5 +66,4 @@ class Treatment_2(Page):
         #return self.round_number == 1
 
 
-
-page_sequence = [Welcome, Introduction, Game, Probab, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2]
+page_sequence = [Welcome, Introduction, Game, Probab, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2, R_Final]
