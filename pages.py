@@ -77,7 +77,6 @@ class Treatment_2(Page):
     """"Just for treated group 2"""
     def is_displayed(self):
         return self.player.tratado_1 == 2 and self.round_number == 1
-        return dict(participant_id=self.participant.label)
 
     def vars_for_template(self):
         return dict(participant_id=self.participant.label)
