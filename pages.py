@@ -65,5 +65,10 @@ class Treatment_2(Page):
         return self.player.tratado_1 == 2 and self.round_number == 1
         #return self.round_number == 1
 
+class Last(Page):
+    def is_displayed(self):
+        return self.round_number == 10
+    def vars_for_template(self):
+        return dict(participant_id = self.player.id_in_group)
 
-page_sequence = [Welcome, Introduction, Game, Probab, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2, R_Final]
+page_sequence = [Welcome, Introduction, Game, Probab, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2, R_Final, Last]
