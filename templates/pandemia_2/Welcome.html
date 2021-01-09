@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<font color="burlywood"><h4 align="right">Tu Etiqueta: {{ participant_id }}</h4></font>
+    <font color="burlywood"><h4 align="right">Tu Etiqueta: {{ participant_id }}</h4></font>
 <div align="justify">
     <p> Estás a punto de participar en un experimento económico. Trata de ser cuidadoso con las decisiones
         que tomes, pues de tus elecciones y las de los demás participantes dependerán tus ganancias. Recuerda que,
@@ -25,5 +25,14 @@ A continuación, presentaremos las instrucciones del juego.
 
 <tr><td colspan="2"><hr/></td></tr>
     {% next_button %}
+
+    {% load otree %}
+{% load staticfiles otree %}
+
+<b>Contáctenos:</b>
+<br>
+<img height="2%" width="2%" src="{% static "whatsapp.png"%}"/> <a href="https://wa.me/0051985730063" target="_blank">+51 985 730 063</a>
+<br>
+<img height="2%" width="2%" src="{% static "gmail.png"%}"/> e2lab@up.edu.pe
 
 {% endblock %}
