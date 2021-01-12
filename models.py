@@ -60,21 +60,30 @@ class Group(BaseGroup):
     individual_share = models.FloatField()
 
     def set_payoffs(self):
-        self.mean_precaution = round(sum([p.precaution for p in self.get_players()])/Constants.players_per_group, ndigits= 2)
+        self.mean_precaution = round(sum([p.precaution for p in self.get_players()]) / Constants.players_per_group,
+                                     ndigits=2)
         self.individual_share = (
-            0.6/ Constants.players_per_group
+                0.6 / Constants.players_per_group
         )
         for p in self.get_players():
-            p.prob_otros = (self.mean_precaution- p.precaution*(1/Constants.players_per_group))*(Constants.players_per_group / (Constants.players_per_group -1))
+            p.prob_otros = (self.mean_precaution - p.precaution * (1 / Constants.players_per_group)) * (
+                        Constants.players_per_group / (Constants.players_per_group - 1))
             p.prob_contagio = round(p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * p.prob_otros) * 10)
-            p.contagiado = numpy.random.binomial(1, p.prob_contagio/100, size=None)
+            p.contagiado = numpy.random.binomial(1, p.prob_contagio / 100, size=None)
+            pago_local = (c(50) - c(p.precaution) * c(p.precaution) - c(70) * c(p.contagiado))
+            p.auxiliar = pago_local
             if self.round_number == 1:
-                p.payoff = (c(50) - c(p.precaution) * c(p.precaution) - c(70) * c(p.contagiado))
-                p.pago_acumulado = p.payoff
+                p.pago_acumulado = pago_local
             else:
-                p.payoff = (c(50) - c(p.precaution) * c(p.precaution) - c(70) * c(p.contagiado))
-                p.pago_acumulado = p.in_round(self.round_number - 1).pago_acumulado + p.payoff
+                p.pago_acumulado = p.in_round(self.round_number - 1).pago_acumulado + pago_local
 
+            if self.round_number == Constants.num_rounds:
+                if p.pago_acumulado < 0:
+                    p.payoff = 0
+                else:
+                    p.payoff = p.pago_acumulado
+            else:
+                p.payoff = c(0)
 
 class Player(BasePlayer):
 
