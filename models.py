@@ -98,3 +98,4 @@ class Player(BasePlayer):
     pago_acumulado = models.CurrencyField()
     tratado_1 = models.IntegerField()
     prob_otros = models.FloatField()
+    auxiliar = models.CurrencyField()
